@@ -1,5 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import styled from 'styled-components'
 import {
   Image,
   Platform,
@@ -11,6 +12,7 @@ import {
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
+import { AuthSession } from 'expo';
 
 export default function HomeScreen() {
   return (
@@ -18,21 +20,14 @@ export default function HomeScreen() {
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/Kim_Phillip.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
+        
+        <View style={styles.travelImageContainer}>
+          <QuestionnaireBlock />
         </View>
-
+        
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>Get started by opening</Text>
+          <Text style={styles.getStartedText}>Opening</Text>
 
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
@@ -74,27 +69,19 @@ HomeScreen.navigationOptions = {
   title: 'Home'
 };
 
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use
-        useful development tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
+function QuestionnaireBlock() {
+  return(
+    <View>
+      <Image
+        source={
+          __DEV__
+            ? require('../assets/images/congo.jpg')
+            : require('../assets/images/robot-prod.png')
+        }
+        style={styles.travelImage}
+      />
+    </View>
+  );
 }
 
 function handleLearnMorePress() {
@@ -135,6 +122,23 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10,
+  },
+  travelImageContainer: {
+    alignItems: 'center'
+  },
+  travelImgAndText: {
+
+  },
+  travelImage: {
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'stretch',
+    width: 400,
+    height: 200,
+    borderRadius: 15
+  },
+  questionnaireContainer: {
+    
   },
   getStartedContainer: {
     alignItems: 'center',
@@ -197,3 +201,30 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+
+
+
+
+// function DevelopmentModeNotice() {
+//   if (__DEV__) {
+//     const learnMoreButton = (
+//       <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
+//         Learn more
+//       </Text>
+//     );
+
+//     return (
+//       <Text style={styles.developmentModeText}>
+//         Development mode is enabled: your app will be slower but you can use
+//         useful development tools. {learnMoreButton}
+//       </Text>
+//     );
+//   } else {
+//     return (
+//       <Text style={styles.developmentModeText}>
+//         You are not in development mode: your app will run at full speed.
+//       </Text>
+//     );
+//   }
+// }
