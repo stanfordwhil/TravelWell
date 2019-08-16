@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import styled from 'styled-components'
+import { List, ListItem } from 'react-native-elements'
 import {
   Image,
   Platform,
@@ -24,8 +25,26 @@ export default function HomeScreen() {
         <View style={styles.travelImageContainer}>
           <QuestionnaireBlock />
         </View>
+
+        <View style={styles.categoriesContainer}>     
+
+          <OptionsBlock/>
+
+          {/* <View>
+            <Text style={{fontSize:20}}>LIBRARY</Text>
+          </View>
+          <View style={styles.btn}>
+            <Text>Travel Info</Text>
+          </View>
+          <View style={styles.btn}>
+            <Text>Get Help</Text>
+          </View>
+          <View style={styles.btn}>
+            <Text>Air Quality Info</Text>
+          </View> */}
+        </View>
         
-        <View style={styles.getStartedContainer}>
+        {/* <View style={styles.getStartedContainer}>
 
           <Text style={styles.getStartedText}>Opening</Text>
 
@@ -45,10 +64,10 @@ export default function HomeScreen() {
               Help, it didn’t automatically reload!
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
+      {/* <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>
           This is a tab bar. You can edit it in:
         </Text>
@@ -59,7 +78,7 @@ export default function HomeScreen() {
             navigation/MainTabNavigator.js
           </MonoText>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -84,6 +103,37 @@ function QuestionnaireBlock() {
   );
 }
 
+/* TODO: finish fill*/
+function OptionsBlock() {
+  // Example list of people
+  const list = [
+    {
+      name: 'Travel Info',
+      // avatar_url:
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+      subtitle: 'Vice Chairman'
+    }
+  ]
+  // TODO: buggy here
+  return(
+    <List containerStyle={{marginBottom: 20}}>
+      {
+        {list}.map((l) => (
+          <ListItem
+            roundAvatar
+            avatar={{uri:l.avatar_url}}
+            key={l.name}
+            title={l.name}
+          />
+        ))
+      }
+    </List>
+  );
+}
+
 function handleLearnMorePress() {
   WebBrowser.openBrowserAsync(
     'https://docs.expo.io/versions/latest/workflow/development-mode/'
@@ -96,10 +146,14 @@ function handleHelpPress() {
   );
 }
 
+/* ------------------------------------- STYLE ----------------------------------------- */
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    // justifyContent: 'center',
+    // alignItems: 'stretch'
   },
   developmentModeText: {
     marginBottom: 20,
@@ -140,6 +194,17 @@ const styles = StyleSheet.create({
   questionnaireContainer: {
     
   },
+
+  categoriesContainer: {
+    marginLeft: 15
+  },
+
+  btn: {
+    fontSize: 17,
+    color: 'rgba(96,100,109, 1)',
+    lineHeight: 24,
+  },
+
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
