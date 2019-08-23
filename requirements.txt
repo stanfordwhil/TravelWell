@@ -1,1 +1,0 @@
-npm install && npm install react-native-elements --save
